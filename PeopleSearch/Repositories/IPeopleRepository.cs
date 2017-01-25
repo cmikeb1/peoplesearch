@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace PeopleSearch.Repositories
 {
-    interface IPeopleRepository
+    public interface IPeopleRepository
     {
-        int PeopleCount();
+        Person Add(Person person);
+        IEnumerable<Person> Add(IEnumerable<Person> person);
+        IEnumerable<Person> Search(int limit, int offset, String query = null);
+        int Count(String query = null);
+        void Purge();
     }
 }

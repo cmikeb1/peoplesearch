@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PeopleSearch.Models;
+using PeopleSearch.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +11,51 @@ namespace PeopleSearch.Controllers
 {
     public class PersonController : ApiController
     {
+        private IPeopleRepository peopleRepo;
+
+        private const int MAX_PAGE_SIZE = 100;
+
+        public PersonController() : base() {
+            this.peopleRepo = new PeopleRepository();
+        }
+
+        public PersonController(PeopleRepository peopleRepo)
+        {
+            this.peopleRepo = peopleRepo;
+        }
+
         // GET api/values
-        public IEnumerable<string> Get()
+        public ApiCollectionWrapper Get(int limit = 10, int offset = 0, string query = null)
         {
-            return new string[] { "value1", "value2" };
-        }
+            // validate limit
+            if(limit < 0)
+            {
+                throw new ArgumentOutOfRangeException("limit", "The limit must be greater than or equal to 1.");
+            }
+            else if(limit > MAX_PAGE_SIZE)
+            {
+                limit = MAX_PAGE_SIZE;
+            }
 
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+            ApiCollectionWrapper wrapper = new ApiCollectionWrapper();
 
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
+            // get total count
+            wrapper.Total = peopleRepo.Count(query);
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+            // a limit of 0 indicates that the consumer is only interested in the count, not the actual data. 
+            if (limit != 0)
+            {
+                wrapper.Data = peopleRepo.Search(limit, offset, query);
+            } else
+            {
+                wrapper.Data = new object[0];
+            }
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            wrapper.Limit = limit;
+            wrapper.Offset = offset;
+            wrapper.Query = query;
+
+            return wrapper;
         }
     }
 }

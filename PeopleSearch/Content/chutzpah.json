@@ -1,0 +1,20 @@
+﻿{
+  "Framework": "jasmine",
+
+  "References": [
+    { "Path": "../Scripts/angular.js" },
+    { "Path": "../Scripts/angular-mocks.js" },
+    { "Path": "../Scripts/jasmine/jasmine.js" },
+    {
+      "Path": "ng-app",
+      "Excludes": [ "*.spec.js" ]
+    }
+  ],
+
+  "Tests": [
+    {
+      "Path": "ng-app",
+      "Includes": [ "*.spec.js" ]
+    }
+  ]
+}

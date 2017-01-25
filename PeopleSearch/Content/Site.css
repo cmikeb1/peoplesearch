@@ -9,13 +9,57 @@
     padding-right: 15px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+#importJumbo {
+    margin-top: 25px;
 }
 
-.import-jumbo {
-    margin-top: 25px;
+#importCountContainer {
+    margin: 75px 0 200px 0;
+}
+
+#importCountContainer form .form-group {
+    display: inline-block;
+}
+
+#importCountContainer form .form-group input {
+    width: 150px;
+    display: inline-block;
+}
+
+#alertRow {
+    margin-top: 20px;
+}
+
+.import-text {
+    margin: 8px 0 8px 0;
+    font-size: 16px;
+    color: #939393;
+}
+
+#personCountMessage {
+    margin: 20px 0 40px 0;
+}
+
+.person-image {
+    float: left;
+    width: 90px;
+    height: 90px;
+}
+
+.person-content {
+    margin-left: 110px;    
+}
+
+.person-content p {
+    font-size: 12px;
+}
+
+.person {
+    clear: both;
+    margin: 20px 0 0 20px;
+    min-height: 90px;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }

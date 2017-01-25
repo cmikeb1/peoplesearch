@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 
 namespace PeopleSearch.Controllers
 {
@@ -11,84 +12,65 @@ namespace PeopleSearch.Controllers
     {
         PeopleImportService peopleImportService = new PeopleImportService();
 
+        private int MAX_SINGLE_IMPORT = 500;
+
+        public PeopleImportController() : base()
+        {
+            this.peopleImportService = new PeopleImportService();
+        }
+
+        public PeopleImportController(PeopleImportService peopleImportService)
+        {
+            this.peopleImportService = peopleImportService;
+        }
+
         // GET: PeopleImport
         public ActionResult Index()
         {
             ViewBag.Title = "PeopleImport";
-            ViewBag.PeopleCount = peopleImportService.PeopleCount();
-
             return View();
         }
 
-        // GET: PeopleImport/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: PeopleImport/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: PeopleImport/Create
+        // POST: PeopleImport/Import
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Import(FormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
+                int importCount = Int32.Parse(collection.Get("importCount"));
 
-                return RedirectToAction("Index");
+                if(importCount > MAX_SINGLE_IMPORT || importCount < 1)
+                {
+                    throw new ArgumentOutOfRangeException("importCount", String.Format("You must import between 1 and {0} people.", MAX_SINGLE_IMPORT));
+                }
+
+                var newPeople = peopleImportService.ImportPeople(importCount);
+
+                return Json(newPeople);
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                Console.WriteLine("Exception caught: {0}", ex);
+                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return Json(new { message = ex.Message });
             }
         }
 
-        // GET: PeopleImport/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: PeopleImport/Edit/5
+        // POST: PeopleImport/Import
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Purge()
         {
             try
             {
-                // TODO: Add update logic here
+                int purgedCount = peopleImportService.Purge();
 
-                return RedirectToAction("Index");
+                return Json(new { message = String.Format("{0} people have been purged", purgedCount) });
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
-            }
-        }
-
-        // GET: PeopleImport/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: PeopleImport/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                Console.WriteLine("Exception caught: {0}", ex);
+                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return Json(new { message = ex.Message });
             }
         }
     }

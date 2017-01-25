@@ -8,7 +8,8 @@ namespace PeopleSearch
 
     public partial class Person
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -48,7 +49,7 @@ namespace PeopleSearch
 
         [Required]
         [StringLength(2018)]
-        public string PictureMeium { get; set; }
+        public string PictureMedium { get; set; }
 
         [Required]
         [StringLength(2018)]

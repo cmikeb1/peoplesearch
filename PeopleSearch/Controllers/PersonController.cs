@@ -25,7 +25,13 @@ namespace PeopleSearch.Controllers
             this.peopleRepo = peopleRepo;
         }
 
-        // GET api/values
+        /// <summary>
+        /// Search for people by first/last name.
+        /// </summary>
+        /// <param name="limit">Number of results to return per request, maximum is 100.</param>
+        /// <param name="offset">Number of records to skip (for paging).</param>
+        /// <param name="sort">Sort direction for last name ['asc'|'dsc']</param>
+        /// <param name="query">The name of the person being serched for. Example: "Ben Smith"</param>
         public ApiCollectionWrapper Get(int limit = 10, int offset = 0, string sort = "asc", string query = null)
         {
             // validate limit
@@ -52,6 +58,9 @@ namespace PeopleSearch.Controllers
             // a limit of 0 indicates that the consumer is only interested in the count, not the actual data. 
             if (limit != 0)
             {
+                // simulate some processing time, between 1 and 5 seconds
+                Random rnd = new Random();
+                Thread.Sleep(rnd.Next(1000, 5000));
                 wrapper.Data = peopleRepo.Search(limit, offset, sort, query);
             } else
             {
@@ -61,11 +70,7 @@ namespace PeopleSearch.Controllers
             wrapper.Limit = limit;
             wrapper.Offset = offset;
             wrapper.Sort = sort;
-            wrapper.Query = query;
-
-            // simulate some processing time, between 1 and 5 seconds
-            Random rnd = new Random();
-            Thread.Sleep(rnd.Next(1000, 5000));
+            wrapper.Query = query;            
 
             return wrapper;
         }

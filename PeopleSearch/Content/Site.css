@@ -6,11 +6,19 @@
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
-    padding-right: 15px;
+    padding-right: 15px;    
+}
+
+#viewBody {
+    min-height: 500px;
 }
 
 #importJumbo {
     margin-top: 25px;
+}
+
+.query-column {
+    margin-top: 10px;
 }
 
 #importCountContainer {

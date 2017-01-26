@@ -20,7 +20,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Search", "Index", "Home", new { area = "" }, null)</li>                    
+                    <li>@Html.ActionLink("Search", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Import", "Index", "PeopleImport", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                 </ul>
@@ -37,7 +37,9 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        <div id="viewBody">
+            @RenderBody()
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Obligatory Copyright</p>

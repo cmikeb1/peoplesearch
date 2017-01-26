@@ -21,6 +21,7 @@ peopleimport.controller('PeopleimportController', function PeopleimportControlle
 
     $scope.triggerImport = function () {
         $scope.importInProgress = true;
+        $scope.personCount = undefined;
         $http({
             method: 'POST',
             url: '/PeopleImport/Import',

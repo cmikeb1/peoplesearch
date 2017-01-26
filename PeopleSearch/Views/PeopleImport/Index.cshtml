@@ -3,14 +3,14 @@
 
         <h1>Import People <small>Making friends* has never been easier!</small></h1>
 
-        <div id="importCountContainer" class="container-fluid">
+        <div id="importCountContainer" class="container-fluid" ng-class="{'loading': importInProgress}">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center">
                     <form class="form-inline" name="form">
                         <p class="import-text">I want to make </p>
                         <div class="form-group" ng-class="{'has-error':form.$invalid && !form.$pristine}">
                             <label class="sr-only" for="importCount">How many?</label>
-                            <input name="importCount" ng-model="importCount" type="number" min="1" max="500" class="form-control input-lg" id="importCount" placeholder="How many?" describedby="importCountHelpText">
+                            <input ng-disabled="importInProgress" name="importCount" ng-model="importCount" type="number" min="1" max="500" class="form-control input-lg" id="importCount" placeholder="How many?" describedby="importCountHelpText">
                             <span id="importCountHelpText" class="help-block">
                                 <span ng-show="form.importCount.$error.integer">Seriously? Try using a number.</span>
                                 <span ng-show="form.importCount.$error.min || form.importCount.$error.max">You may import between 1 and 500 people.</span>
@@ -20,9 +20,12 @@
                         <button type="submit" class="btn btn-lg btn-primary" ng-class="{'disabled': importInProgress}" ng-disabled="importInProgress" ng-click="triggerImport()">{{importButtonText()}}</button>
                         <p class="import-text"> them.</p>
                     </form>
-                    <p id="personCountMessage" ng-show="personCount !== undefined" class="help-block">There are currently <strong>{{personCount}}</strong> people in the local database.</p>
+                    <p id="personCountMessage" class="help-block">There are currently 
+                        <strong ng-if="personCount !== undefined">{{personCount}}</strong> 
+                        <strong ng-if="personCount === undefined">...</strong>
+                        people in the local database.</p>
                     <div>
-                        If you want to remove everyone, you may <button id="triggerPurge" class="btn btn-danger btn-sm" ng-click="triggerPurge()">{{purgeButtonText()}}</button>
+                        If you want to remove everyone, you may <button ng-disabled="importInProgress" id="triggerPurge" class="btn btn-danger btn-sm" ng-click="triggerPurge()">{{purgeButtonText()}}</button>
                     </div><p></p>
                 </div>
             </div>

@@ -203,9 +203,11 @@
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="Content\ng-app\app.module.js" />
+    <Content Include="Content\ng-app\app.module.spec.js" />
     <Content Include="Content\ng-app\peopleimport\peopleimport.module.js" />
     <Content Include="Content\ng-app\peopleimport\peopleimport.module.spec.js" />
     <Content Include="Content\ng-app\peoplesearch\peoplesearch.module.js" />
+    <Content Include="Content\ng-app\peoplesearch\peoplesearch.module.spec.js" />
     <Content Include="Content\ng-app\person\person.module.js" />
     <Content Include="Content\ng-app\person\person.module.spec.js" />
     <Content Include="Content\ui-bootstrap-csp.css" />
@@ -246,6 +248,7 @@
     <Content Include="Scripts\angular-resource.min.js.map" />
     <Content Include="Content\chutzpah.json" />
     <Content Include="Content\ng-app\people.json" />
+    <None Include="Properties\PublishProfiles\cmb-PeopleSearch - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jasmine-samples\Player.js" />
     <Content Include="Scripts\jasmine-samples\PlayerSpec.js" />

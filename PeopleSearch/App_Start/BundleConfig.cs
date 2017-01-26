@@ -38,7 +38,7 @@ namespace PeopleSearch
                     "~/Content/ng-app/peopleimport/peopleimport.module.js",
                     "~/Content/ng-app/peoplesearch/peoplesearch.module.js"));
 
-            //BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

@@ -1,26 +1,29 @@
 ﻿<div ng-controller="PeoplesearchController" ng-cloak>
     <div id="searchRow" class="row">
-        <form name="searchForm" class="form-horizontal">
-            <div class="form-group">
-                <label class="sr-only" for="searchBox">Email address</label>
-                <div class="col-sm-8 col-sm-offset-1">
-                    <div class="input-group">
-                        <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
-                        <input ng-disabled="queryInProgress" ng-model="query" type="search" class="form-control input-lg" id="searchBox" placeholder="Search for people by name">
+        <div class="col-md-12">
+            <form name="searchForm" class="form-horizontal">
+                <div class="form-group">
+                    <label class="sr-only" for="searchBox">Email address</label>
+
+                    <div class="col-sm-8 col-sm-offset-1 query-column">
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+                            <input ng-disabled="queryInProgress" ng-model="query" type="search" class="form-control input-lg" id="searchBox" placeholder="Search for people by name">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 query-column">
+                        <button ng-disabled="queryInProgress" type="submit" class="btn btn-primary btn-lg" ng-click="triggerQuery()">{{queryButtonText()}}</button>
+
+                        <button ng-disabled="queryInProgress" id="sortButton" class="btn btn-default btn-lg" type="button" ng-model="sort" ng-click="toggleSort()" aria-label="left-align">
+                            <span ng-if="sort === 'asc'" class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+                            <span ng-if="sort === 'dsc'" class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+                        </button>
+
                     </div>
                 </div>
-                <div class="col-sm-3">
-
-                    <button ng-disabled="queryInProgress" type="submit" class="btn btn-primary btn-lg" ng-click="triggerQuery()">{{queryButtonText()}}</button>
-
-                    <button ng-disabled="queryInProgress" id="sortButton" class="btn btn-default btn-lg" type="button" ng-model="sort" ng-click="toggleSort()" aria-label="left-align">
-                        <span ng-if="sort === 'asc'" class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
-                        <span ng-if="sort === 'dsc'" class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
-                    </button>
-                </div>
-            </div>
-            <p class="help-block text-center" ng-show="result">{{result.Total}} results ({{queryTime | number:5}} seconds)</p>
-        </form>
+                <p class="help-block text-center" ng-show="result">{{result.Total}} results ({{queryTime | number:5}} seconds)</p>
+            </form>
+        </div>
     </div>
 
 

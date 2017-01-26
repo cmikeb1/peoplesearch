@@ -48,7 +48,7 @@
             </div>
         </div>
         <div id="pagination" class="col-md-12 text-center" ng-if="result">
-            <ul ng-disabled="queryInProgress" uib-pagination total-items="result.Total" ng-model="page.current" ng-change="triggerPageChange()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+            <ul ng-disabled="queryInProgress" uib-pagination total-items="result.Total" ng-model="page.current" ng-change="triggerPageChange()" class="pagination-sm" boundary-link-numbers="true" rotate="true" max-size="8"></ul>
         </div>
     </div>
 </div>

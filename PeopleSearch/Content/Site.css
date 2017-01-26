@@ -60,6 +60,14 @@
     min-height: 90px;
 }
 
+#resultsPlaceholder {
+    margin-top: 50px;
+}
+
+.loading {
+    opacity: 0.4;
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }

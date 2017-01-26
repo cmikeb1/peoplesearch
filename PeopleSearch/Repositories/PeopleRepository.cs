@@ -39,16 +39,26 @@ namespace PeopleSearch.Repositories
             }
         }
 
-        public IEnumerable<Person> Search(int limit, int offset, string query = null)
+        public IEnumerable<Person> Search(int limit, int offset, string sort, string query = null)
         {
             using (var db = peopleContextFactory.CreatePeopleContext())
             {
-                if (string.IsNullOrEmpty(query))
+                IQueryable<Person> queryable = db.People;
+                        
+                if (!string.IsNullOrEmpty(query))
                 {
-                    return db.People.OrderBy(p => p.NameLast).Skip(offset).Take(limit).ToList();
+                    queryable = queryable.Intersect(FormulatePersonNameClause(query, db));                    
                 }
 
-                throw new NotImplementedException();
+                if(sort == "asc")
+                {
+                    queryable = queryable.OrderBy(p => p.NameLast);
+                } else
+                {
+                    queryable = queryable.OrderByDescending(p => p.NameLast);
+                }
+
+                return queryable.Skip(offset).Take(limit).ToList();                
             }
         }
 
@@ -56,12 +66,14 @@ namespace PeopleSearch.Repositories
         {
             using (var db = peopleContextFactory.CreatePeopleContext())
             {
-                if (string.IsNullOrEmpty(query))
+                IQueryable<Person> queryable = db.People;
+
+                if (!string.IsNullOrEmpty(query))
                 {
-                    return db.People.Count();
+                    queryable = queryable.Intersect(FormulatePersonNameClause(query, db));
                 }
 
-                throw new NotImplementedException();
+                return queryable.Count();
             }
         }
 
@@ -71,6 +83,22 @@ namespace PeopleSearch.Repositories
             {
                 db.Database.ExecuteSqlCommand("delete from People");
             }
+        }
+
+        private IQueryable<Person> FormulatePersonNameClause(String query, PeopleContext db)
+        {
+            var querySplit = query.Split(' ');
+            IQueryable<Person> queryableAggregate = null;
+
+            foreach (var queryPart in querySplit)
+            {
+                var curQueryable = Queryable.Where(db.People, p => p.NameFirst.ToLower().Contains(queryPart.ToLower())
+                        || p.NameLast.ToLower().Contains(queryPart.ToLower()));
+
+                queryableAggregate = queryableAggregate == null ? queryableAggregate = curQueryable : queryableAggregate.Intersect(curQueryable);
+            }
+
+            return queryableAggregate;
         }
     }
 }

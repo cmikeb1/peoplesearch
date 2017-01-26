@@ -24,7 +24,7 @@ peopleApp.factory('Person', ['$resource',
         return $resource('/api/Person/:id', {}, {
             query: {
                 method: 'GET',
-                params: {limit: 10, offset: 0, query: null},
+                params: {limit: 10, offset: 0, query: null, sort: 'asc'},
                 isArray: false
             }
         });

@@ -10,7 +10,7 @@ namespace PeopleSearch.Repositories
     {
         Person Add(Person person);
         IEnumerable<Person> Add(IEnumerable<Person> person);
-        IEnumerable<Person> Search(int limit, int offset, String query = null);
+        IEnumerable<Person> Search(int limit, int offset, String sort, String query = null);
         int Count(String query = null);
         void Purge();
     }

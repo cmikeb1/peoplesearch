@@ -10,7 +10,7 @@ namespace PeopleSearch.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "PeopleSearch | You've got queries, we've got people.";
 
             return View();
         }

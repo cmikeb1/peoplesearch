@@ -1,15 +1,33 @@
 ﻿describe('PeopleimportController', function () {
+    var $controller;
+
+    beforeEach(function () {
+        jasmine.addCustomEqualityTester(angular.equals);
+    });
 
     beforeEach(module('peopleimport'));
 
-    it('should return a string representing the import button text', inject(function ($controller) {
-        var scope = {},
-            http = {},
-            log = {},
-            person = {};
-
-        var ctrl = $controller('PeopleimportController', { $scope: scope, $http: http, $log: log, Person: person  });
-
-        expect(scope.importButtonText()).toBe('Import');
+    beforeEach(inject(function (_$controller_) {
+        $controller = _$controller_;
     }));
+
+    describe('$scope.importButtonText()', function () {
+        it('should return std value', function () {
+            var $scope = {};
+            var controller = $controller('PeopleimportController', { $scope: $scope });
+            $scope.importInProgress = false;
+            var actual = $scope.importButtonText();
+
+            expect(actual).toEqual("Import");
+        });
+
+        it('should return bsy value during import', function () {
+            var $scope = {};
+            var controller = $controller('PeopleimportController', { $scope: $scope });
+            $scope.importInProgress = true;
+            var actual = $scope.importButtonText();
+
+            expect(actual).toEqual("Importing...");
+        });
+    });
 });

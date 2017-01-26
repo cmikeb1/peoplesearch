@@ -2,7 +2,11 @@
   "Framework": "jasmine",
 
   "References": [
+    { "Path": "../Scripts/jquery-1.10.2.js" },
+    { "Path": "../Scripts/bootstrap.js" },
     { "Path": "../Scripts/angular.js" },
+    { "Path": "../Scripts/angular-ui/ui-bootstrap-tpls.js" },
+    { "Path": "../Scripts/angular-resource.js" },
     { "Path": "../Scripts/angular-mocks.js" },
     { "Path": "../Scripts/jasmine/jasmine.js" },
     {

@@ -1,0 +1,91 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Jasmine Spec Runner</title>
+    <script type="text/javascript" src="file:///C:/Users/cmbylund/AppData/Local/Microsoft/VisualStudio/14.0/Extensions/obglgef4.2gp/TestFiles/chutzpah_boot.js"></script>
+<link rel="stylesheet" type="text/css" href="file:///C:/Users/cmbylund/AppData/Local/Microsoft/VisualStudio/14.0/Extensions/obglgef4.2gp/TestFiles/jasmine/v2/jasmine.css"/>
+<script type="text/javascript" src="file:///C:/Users/cmbylund/AppData/Local/Microsoft/VisualStudio/14.0/Extensions/obglgef4.2gp/TestFiles/jasmine/v2/jasmine.js"></script>
+<script type="text/javascript" src="file:///C:/Users/cmbylund/AppData/Local/Microsoft/VisualStudio/14.0/Extensions/obglgef4.2gp/TestFiles/jasmine/v2/jasmine-html.js"></script>
+<script type="text/javascript" src="file:///C:/Users/cmbylund/AppData/Local/Microsoft/VisualStudio/14.0/Extensions/obglgef4.2gp/TestFiles/jasmine/v2/boot.js"></script>
+<link rel="shortcut icon" type="image/png" href="file:///C:/Users/cmbylund/AppData/Local/Microsoft/VisualStudio/14.0/Extensions/obglgef4.2gp/TestFiles/jasmine/v2/jasmine_favicon.png"/>
+
+    
+    
+    <script type="text/javascript" src="file:////mac/home/work/vs2015/PeopleSearch/PeopleSearch/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="file:////mac/home/work/vs2015/PeopleSearch/PeopleSearch/Scripts/bootstrap.js"></script>
+<script type="text/javascript" src="file:////mac/home/work/vs2015/PeopleSearch/PeopleSearch/Scripts/angular.js"></script>
+<script type="text/javascript" src="file:////mac/home/work/vs2015/PeopleSearch/PeopleSearch/Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+<script type="text/javascript" src="file:////mac/home/work/vs2015/PeopleSearch/PeopleSearch/Scripts/angular-resource.js"></script>
+<script type="text/javascript" src="file:////mac/home/work/vs2015/PeopleSearch/PeopleSearch/Scripts/angular-mocks.js"></script>
+<script type="text/javascript" src="file:////mac/home/work/vs2015/PeopleSearch/PeopleSearch/Content/ng-app/app.module.js"></script>
+<script type="text/javascript" src="file:////mac/home/work/vs2015/PeopleSearch/PeopleSearch/Content/ng-app/peopleimport/peopleimport.module.js"></script>
+<script type="text/javascript" src="file:////mac/home/work/vs2015/PeopleSearch/PeopleSearch/Content/ng-app/peoplesearch/peoplesearch.module.js"></script>
+<script type="text/javascript" src="file:////mac/home/work/vs2015/PeopleSearch/PeopleSearch/Content/ng-app/person/person.module.js"></script>
+
+    <script type="text/javascript" src="file:////mac/home/work/vs2015/PeopleSearch/PeopleSearch/Content/ng-app/app.module.spec.js"></script>
+
+    <script type="text/javascript">
+
+        (function () {
+
+            var amdTestPaths = [];
+            window.chutzpah.boot(amdTestPaths);
+
+            if (window.chutzpah.usingModuleLoader) {
+                if("") {
+                    window.chutzpah.amdConfig({
+                        baseUrl: ""
+                    });
+                }
+
+                window.chutzpah.amdConfig({
+                    map: {
+                        '*': {
+                            
+                            }
+                    }
+                });
+
+                window.chutzpah.start = function() {
+                    window.chutzpah.amdImport(amdTestPaths, function () {
+
+                        console.log("!!_!! Stating Jasmine from AMD callback...");
+                        window.initializeJasmine();
+                    });
+                };
+
+                if(window.chutzpah.autoStart !== false) {
+                    window.chutzpah.start();
+                }
+
+            }
+            else {
+
+                window.chutzpah.start = function() {
+                    console.log("!!_!! Stating Jasmine...");
+                    window.initializeJasmine();  
+                };
+
+                var currentWindowOnload = window.onload;
+
+                window.onload = function() {
+                    if (currentWindowOnload) {
+                        currentWindowOnload();
+                    }
+
+                    if(!window.chutzpah.phantom && window.chutzpah.autoStart !== false) {
+                        console.log("!!_!! Stating Jasmine from HTML OnLoad callback...");
+                        window.chutzpah.start();
+                    }
+                };
+            }
+
+        })();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

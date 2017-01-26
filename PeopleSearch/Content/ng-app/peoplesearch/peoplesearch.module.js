@@ -1,4 +1,4 @@
-﻿var peoplesearch = angular.module('peoplesearch', []);
+﻿var peoplesearch = angular.module('peoplesearch', ['person']);
 
 peoplesearch.controller('PeoplesearchController', function PeopleimportController($scope, $http, $log, Person) {    
 

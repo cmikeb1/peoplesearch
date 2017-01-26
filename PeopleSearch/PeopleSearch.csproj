@@ -206,6 +206,8 @@
     <Content Include="Content\ng-app\peopleimport\peopleimport.module.js" />
     <Content Include="Content\ng-app\peopleimport\peopleimport.module.spec.js" />
     <Content Include="Content\ng-app\peoplesearch\peoplesearch.module.js" />
+    <Content Include="Content\ng-app\person\person.module.js" />
+    <Content Include="Content\ng-app\person\person.module.spec.js" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

@@ -34,6 +34,7 @@ namespace PeopleSearch
             // custom angular app
             bundles.Add(new ScriptBundle("~/Content/ng-app").Include(
                     "~/Content/ng-app/app.module.js",
+                    "~/Content/ng-app/person/person.module.js",
                     "~/Content/ng-app/peopleimport/peopleimport.module.js",
                     "~/Content/ng-app/peoplesearch/peoplesearch.module.js"));
 

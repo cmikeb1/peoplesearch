@@ -1,7 +1,7 @@
-﻿var peopleApp = angular.module('peopleApp', ['peoplesearch', 'peopleimport', 'ui.bootstrap', 'ngResource']);
+﻿var peopleApp = angular.module('peopleApp', ['person', 'peoplesearch', 'peopleimport', 'ui.bootstrap', 'ngResource']);
 
 
-peopleApp.controller('PeopleAppController', function PeopleimportController($scope, $http, $log) {
+peopleApp.controller('PeopleAppController', function PeopleimportController($scope) {
 
     $scope.alerts = [];
 
@@ -17,16 +17,3 @@ peopleApp.controller('PeopleAppController', function PeopleimportController($sco
         $scope.alerts.splice(index, 1);
     }
 });
-
-
-peopleApp.factory('Person', ['$resource',
-    function ($resource) {
-        return $resource('/api/Person/:id', {}, {
-            query: {
-                method: 'GET',
-                params: {limit: 10, offset: 0, query: null, sort: 'asc'},
-                isArray: false
-            }
-        });
-    }
-]);

@@ -15,14 +15,17 @@
                                 <span ng-show="form.importCount.$error.integer">Seriously? Try using a number.</span>
                                 <span ng-show="form.importCount.$error.min || form.importCount.$error.max">You may import between 1 and 500 people.</span>
                             </span>
-                        </div>
+                        </div>  
                         <p class="import-text"> new friends, so please </p>
-                        <button type="submit" class="btn btn-lg btn-primary" ng-class="{'disabled': importInProgress}" ng-disabled="importInProgress" ng-click="triggerImport()">{{importButtonText()}}</button>
+                        <button type="submit" class="btn btn-lg btn-primary" ng-class="{'disabled': importInProgress}" ng-disabled="importInProgress" ng-click="triggerImport()">
+                            <img class="primary-loader" ng-if="importInProgress"  src="~/Content/images/ajax-loader_large.gif" />
+                            {{importButtonText()}}
+                        </button>
                         <p class="import-text"> them.</p>
                     </form>
                     <p id="personCountMessage" class="help-block">There are currently 
                         <strong ng-if="personCount !== undefined">{{personCount}}</strong> 
-                        <strong ng-if="personCount === undefined">...</strong>
+                        <img ng-if="personCount === undefined" src="~/Content/images/ajax-loader_small.gif"/>
                         people in the local database.</p>
                     <div>
                         If you want to remove everyone, you may <button ng-disabled="importInProgress" id="triggerPurge" class="btn btn-danger btn-sm" ng-click="triggerPurge()">{{purgeButtonText()}}</button>

@@ -12,7 +12,10 @@
                         </div>
                     </div>
                     <div class="col-sm-3 query-column">
-                        <button ng-disabled="queryInProgress" type="submit" class="btn btn-primary btn-lg" ng-click="triggerQuery()">{{queryButtonText()}}</button>
+                        <button ng-disabled="queryInProgress" type="submit" class="btn btn-primary btn-lg" ng-click="triggerQuery()">
+                            <img class="primary-loader" ng-if="queryInProgress" src="~/Content/images/ajax-loader_large.gif" />
+                            {{queryButtonText()}}
+                        </button>
 
                         <button ng-disabled="queryInProgress" id="sortButton" class="btn btn-default btn-lg" type="button" ng-model="sort" ng-click="toggleSort()" aria-label="left-align">
                             <span ng-if="sort === 'asc'" class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
